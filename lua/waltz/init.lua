@@ -1,10 +1,29 @@
+local config_root = vim.env.CONFIG_ROOT
+
+if config_root then
+  vim.opt.rtp:prepend(config_root)
+end
 local bufferline = require("waltz.integrations.bufferline")
 local cmp = require("waltz.integrations.cmp")
 local colorscheme_module = require("waltz.colorscheme")
 local ibl = require("waltz.integrations.ibl")
 local config = require("waltz.config")
 local utils = require("waltz.utils")
-local theme = {}
+local theme = require("waltz")
+
+theme.setup({
+  theme = "auto",
+  transparent = true,
+  italics = {
+    comments = false,
+    keywords = true,
+    functions = true,
+    strings = false,
+    variables = true,
+  },
+})
+
+theme.colorscheme()
 
 local function set_terminal_colors(colorscheme)
 	local t = colorscheme.terminal
@@ -319,7 +338,8 @@ function theme.colorscheme()
 		return
 	end
 
-	vim.api.nvim_command("hi clear")
+	vim.cmd("highlight clear")
+	vim.o.background = "dark"
 	if vim.fn.exists("syntax_on") then
 		vim.api.nvim_command("syntax reset")
 	end

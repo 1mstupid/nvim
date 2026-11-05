@@ -68,6 +68,7 @@ vim.keymap.set("n", ";E", '<cmd>call setqflist([], "r")<CR><cmd>ccl<CR><cmd>lua 
 vim.keymap.set("n", ";e", toggle_qf)
 vim.keymap.set("i", "<C-c>", "<Esc>", options)
 vim.keymap.set("n", "<leader><leader>", "<cmd>so<cr>", options)
+vim.keymap.set("n", "<C-w>", "write")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
