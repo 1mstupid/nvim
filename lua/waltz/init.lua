@@ -1,8 +1,4 @@
-local config_root = vim.env.CONFIG_ROOT
-
-if config_root then
-  vim.opt.rtp:prepend(config_root)
-end
+vim.opt.rtp:prepend(vim.env.CONFIG_ROOT)
 local bufferline = require("waltz.integrations.bufferline")
 local cmp = require("waltz.integrations.cmp")
 local colorscheme_module = require("waltz.colorscheme")
