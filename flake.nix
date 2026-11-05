@@ -59,7 +59,7 @@
             "NVIM_APPNAME" = "nvim-waltz-remote";
           };
           runtimePkgs = pkgList;
-          settings.config_directory = ./.;
+          settings.config_directory = "${./.}";
         };
         minimal = inputs.wrappers.wrappers.neovim.wrap {
           inherit pkgs;
