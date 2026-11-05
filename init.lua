@@ -21,17 +21,17 @@ vim.opt.cursorlineopt = "both"
 
 vim.opt.list = true
 vim.opt.listchars = {
-  lead = " ",
-  trail = " ",
-  tab = "  ╎",
+	lead = " ",
+	trail = " ",
+	tab = "  ╎",
 }
 
 vim.opt.guicursor = {
-  "n-v-c:block",
-  "i-ci:ver25",
-  "r-cr:hor20",
-  "o:hor50",
-  "a:blinkon6",
+	"n-v-c:block",
+	"i-ci:ver25",
+	"r-cr:hor20",
+	"o:hor50",
+	"a:blinkon6",
 }
 
 vim.opt.mouse = "a"
@@ -117,69 +117,69 @@ require("lazy").setup({
 			main = "mini.statusline",
 			lazy = false,
 			opts = {
-			  use_icons = false,
-			  set_vim_settings = false,
+				use_icons = false,
+				set_vim_settings = false,
 
-			  content = {
-			    active = function()
-			      local MiniStatusline = require("mini.statusline")
+				content = {
+					active = function()
+						local MiniStatusline = require("mini.statusline")
 
-			      local mode, mode_hl = MiniStatusline.section_mode({
-			        trunc_width = 120,
-			      })
+						local mode, mode_hl = MiniStatusline.section_mode({
+							trunc_width = 120,
+						})
 
-			      local filename = MiniStatusline.section_filename({
-			        trunc_width = 140,
-			      })
+						local filename = MiniStatusline.section_filename({
+							trunc_width = 140,
+						})
 
-			      local git = MiniStatusline.section_git({
-			        trunc_width = 40,
-			      })
+						local git = MiniStatusline.section_git({
+							trunc_width = 40,
+						})
 
-			      local diagnostics = MiniStatusline.section_diagnostics({
-			        trunc_width = 75,
-			      })
+						local diagnostics = MiniStatusline.section_diagnostics({
+							trunc_width = 75,
+						})
 
-			      local fileinfo = MiniStatusline.section_fileinfo({
-			        trunc_width = 120,
-			      })
+						local fileinfo = MiniStatusline.section_fileinfo({
+							trunc_width = 120,
+						})
 
-			      local location = MiniStatusline.section_location({
-			        trunc_width = 75,
-			      })
+						local location = MiniStatusline.section_location({
+							trunc_width = 75,
+						})
 
-			      return MiniStatusline.combine_groups({
-			        { hl = mode_hl, strings = { mode } },
-			        { hl = "MiniStatuslineDevinfo", strings = { "┃" } },
-			        { hl = "MiniStatuslineFilename", strings = { filename } },
-			        "%=",
-			        { hl = "MiniStatuslineDevinfo", strings = { git } },
-			        { hl = "MiniStatuslineDevinfo", strings = { diagnostics } },
-			        { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
-			        { hl = "MiniStatuslineFilename", strings = { location } },
-			      })
-			    end,
-			  },
+						return MiniStatusline.combine_groups({
+							{ hl = mode_hl, strings = { mode } },
+							{ hl = "MiniStatuslineDevinfo", strings = { "┃" } },
+							{ hl = "MiniStatuslineFilename", strings = { filename } },
+							"%=",
+							{ hl = "MiniStatuslineDevinfo", strings = { git } },
+							{ hl = "MiniStatuslineDevinfo", strings = { diagnostics } },
+							{ hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
+							{ hl = "MiniStatuslineFilename", strings = { location } },
+						})
+					end,
+				},
 			},
 		},
-		
+
 		{
-		  "echasnovski/mini.indentscope",
-		  version = false,
-		  event = { "BufReadPre", "BufNewFile" },
-		  opts = {
-		    symbol = "╎",
-		    draw = {
-		      delay = 0,
-		      animation = function()
-		        return 0
-		      end,
-		    },
-		    options = {
-		      border = "both",
-		      indent_at_cursor = true,
-		    },
-		  },
+			"echasnovski/mini.indentscope",
+			version = false,
+			event = { "BufReadPre", "BufNewFile" },
+			opts = {
+				symbol = "╎",
+				draw = {
+					delay = 0,
+					animation = function()
+						return 0
+					end,
+				},
+				options = {
+					border = "both",
+					indent_at_cursor = true,
+				},
+			},
 		},
 
 		{
@@ -214,21 +214,21 @@ require("lazy").setup({
 			},
 		},
 		{
-		  "epwalsh/obsidian.nvim",
-		  version = "*",  -- recommended, use latest release instead of latest commit
-		  lazy = true,
-		  ft = "markdown",
-		  dependencies = {
-		    "nvim-lua/plenary.nvim",
-		  },
-		  opts = {
-		    workspaces = {
-		      {
-		        name = "personal",
-		        path = "~/Documents/notes",
-		      },
-		    },
-		  },
+			"epwalsh/obsidian.nvim",
+			version = "*", -- recommended, use latest release instead of latest commit
+			lazy = true,
+			ft = "markdown",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+			},
+			opts = {
+				workspaces = {
+					{
+						name = "personal",
+						path = "~/Documents/notes",
+					},
+				},
+			},
 		},
 		{
 			"nvim-telescope/telescope.nvim",
@@ -374,31 +374,41 @@ require("lazy").setup({
 				})
 			end,
 		},
-    {
-      "nvim-treesitter/nvim-treesitter",
-      branch = "main",
-      lazy = false,
-      build = ":TSUpdate",
-      opts = {
-        ensure_installed = {
-          "gitcommit",
-          "json",
-          "json5",
-          "jsonc",
-          "lua",
-          "nix",
-        },
-      },
-      config = function(_, opts)
-        local treesitter = require("nvim-treesitter")
+		{
+			"nvim-treesitter/nvim-treesitter",
+			branch = "main",
+			lazy = false,
+			build = ":TSUpdate",
+			opts = {
+				ensure_installed = {
+					"bash",
+					"html",
+					"svelte",
+					"latex",
+					"javascript",
+					"json",
+					"lua",
+					"markdown",
+					"markdown_inline",
+					"query",
+					"regex",
+					"tsx",
+					"typescript",
+					"python",
+					"vim",
+					"yaml",
+				},
+			},
+			config = function(_, opts)
+				local treesitter = require("nvim-treesitter")
 
-        treesitter.setup({
-          install_dir = vim.fn.stdpath("data") .. "/site",
-        })
+				treesitter.setup({
+					install_dir = vim.fn.stdpath("data") .. "/site",
+				})
 
-        treesitter.install(opts.ensure_installed)
-      end,
-    },
+				treesitter.install(opts.ensure_installed)
+			end,
+		},
 		defaults = {
 			lazy = true,
 		},
