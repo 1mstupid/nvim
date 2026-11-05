@@ -5,7 +5,7 @@ local colorscheme_module = require("waltz.colorscheme")
 local ibl = require("waltz.integrations.ibl")
 local config = require("waltz.config")
 local utils = require("waltz.utils")
-local theme = require("waltz")
+local theme = {}
 
 theme.setup({
   theme = "auto",
