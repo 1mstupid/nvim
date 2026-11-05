@@ -1,12 +1,11 @@
-vim.opt.rtp:prepend(vim.env.CONFIG_ROOT)
 local bufferline = require("waltz.integrations.bufferline")
 local cmp = require("waltz.integrations.cmp")
 local colorscheme_module = require("waltz.colorscheme")
 local ibl = require("waltz.integrations.ibl")
 local config = require("waltz.config")
 local utils = require("waltz.utils")
-local theme = {}
 
+local theme = {}
 theme.setup({
   theme = "auto",
   transparent = true,
@@ -321,7 +320,7 @@ local function set_groups(colorscheme)
 end
 
 function theme.setup(values)
-	config = vim.tbl_deep_extend("force", config.defaults, values or {})
+    config = vim.tbl_deep_extend("force", config.defaults, values or {})
 end
 
 function theme.colorscheme()
@@ -351,3 +350,4 @@ function theme.colorscheme()
 end
 
 return theme
+
