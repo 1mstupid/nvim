@@ -1,0 +1,62 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1793726008,
+        "narHash": "sha256-jQp1wKvbwWdLBASTXkSi/VYmDJ5AbBi1WvcMt9HWJC8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1793225069,
+        "narHash": "sha256-sx1f99WGrDfJ83KKuQrqGPmot0rnDgmpLJDzpU2oHQQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e62746b0b472753ef019baceab6f1e2e52014980",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "wrappers": "wrappers"
+      }
+    },
+    "wrappers": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1793856116,
+        "narHash": "sha256-QUeRSbY+kr84e7b+zxIlyHMrHqr8SrMIeuAWNR3lMhY=",
+        "owner": "BirdeeHub",
+        "repo": "nix-wrapper-modules",
+        "rev": "fcac2fa0c16711ff7fd09176cb3842d0c0ca5183",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "nix-wrapper-modules",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
