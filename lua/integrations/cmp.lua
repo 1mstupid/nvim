@@ -1,4 +1,4 @@
-local colorscheme = require 'waltz.colorscheme'
+local colorscheme = require 'colorscheme'
 
 local M = {}
 

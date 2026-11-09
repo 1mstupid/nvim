@@ -13,7 +13,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("waltz.plugins", {
+require("lazy").setup("plugins", {
 	root = vim.fn.stdpath("data") .. "/waltz/lazy",
 
 	defaults = {

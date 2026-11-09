@@ -33,8 +33,8 @@ map("n", ";e", toggle_qf)
 -- Editing
 map("i", "<C-c>", "<Esc>", options)
 map("n", "<leader><leader>", "<cmd>so<cr>", options)
-map("n", "<C-w>", "<cmd>write<cr>")
-map("n", "<C-q>", "<cmd>quit<cr>")
+map("n", "<C-t>", "<cmd>w<cr>")
+map("n", "<C-q>", "<cmd>q<cr>")
 
 -- Visual indentation
 map("v", "<", "<gv", options)

@@ -1,15 +1,15 @@
-require("waltz.autocmds")
-require("waltz.options")
-require("waltz.keybinds")
+require("autocmds")
+require("options")
+require("mappings")
 
-require("waltz.lazy")
+require("lazy")
 
-local bufferline = require("waltz.integrations.bufferline")
-local cmp = require("waltz.integrations.cmp")
-local colorscheme_module = require("waltz.colorscheme")
-local ibl = require("waltz.integrations.ibl")
-local config = require("waltz.config")
-local utils = require("waltz.utils")
+local bufferline = require("integrations.bufferline")
+local cmp = require("integrations.cmp")
+local colorscheme_module = require("colorscheme")
+local ibl = require("integrations.ibl")
+local config = require("config")
+local utils = require("utils")
 
 local theme = {}
 

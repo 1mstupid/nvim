@@ -1,20 +1,53 @@
 return {
+	-- Dashboard
 	{
 		"goolord/alpha-nvim",
-		-- dependencies = { 'nvim-mini/mini.icons' },
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		lazy = false,
+		dependencies = {
+			"echasnovski/mini.pick",
+			"echasnovski/mini.extra",
+		},
 		config = function()
-			local startify = require("alpha.themes.startify")
-			-- available: devicons, mini, default is mini
-			-- if provider not loaded and enabled is true, it will try to use another provider
-			startify.file_icons.provider = "devicons"
-			require("alpha").setup(startify.config)
+			local dashboard = require("alpha.themes.dashboard")
+
+			dashboard.section.header.val = {
+				"                                   ",
+				"            ╔════════╗             ",
+				"            ║  p w n ║             ",
+				"            ╚════════╝             ",
+				"          > build. exploit. repeat.",
+				"                                   ",
+			}
+
+			dashboard.section.buttons.val = {
+				dashboard.button("f", "    Find files", "<cmd>lua MiniPick.builtin.files()<CR>"),
+				dashboard.button("r", "    Recent", "<cmd>lua MiniExtra.pickers.oldfiles()<CR>"),
+				dashboard.button("c", "    Nvim config", "<cmd>edit $MYVIMRC<CR>"),
+				dashboard.button("p", "    Projects", "<cmd>lua MiniPick.builtin.grep_live()<CR>"),
+				dashboard.button("q", "  󰗼  Quit", "<cmd>qa<CR>"),
+			}
+
+			dashboard.section.footer.val = "cwd: " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+
+			dashboard.config.layout = {
+				{ type = "padding", val = 4 },
+				dashboard.section.header,
+				{ type = "padding", val = 2 },
+				dashboard.section.buttons,
+				{ type = "padding", val = 1 },
+				dashboard.section.footer,
+			}
+
+			require("alpha").setup(dashboard.config)
 		end,
 	},
+
+	-- Highlight TODO, FIXME, HACK, NOTE and hex colors
+
 	{
 		"echasnovski/mini.hipatterns",
-		main = "mini.hipatterns",
-		event = { "BufReadPost" },
+		version = false,
+		event = "BufReadPost",
 		config = function()
 			local hipatterns = require("mini.hipatterns")
 
@@ -41,64 +74,32 @@ return {
 			})
 		end,
 	},
+
+	-- Formatting
 	{
 		"stevearc/conform.nvim",
 		event = "BufWritePre",
-		config = function()
-			require("conform").setup({
-				formatters_by_ft = {
-					lua = { "stylua" },
-				},
-				format_on_save = {
-					timeout_ms = 500,
-					lsp_format = "fallback",
-				},
-			})
-		end,
+		opts = {
+			formatters_by_ft = {
+				lua = { "stylua" },
+			},
+			format_on_save = {
+				timeout_ms = 500,
+				lsp_format = "fallback",
+			},
+		},
 	},
 
-	{
-		"echasnovski/mini.hipatterns",
-		main = "mini.hipatterns",
-		event = { "BufReadPost" },
-		config = function()
-			local hipatterns = require("mini.hipatterns")
-
-			hipatterns.setup({
-				highlighters = {
-					fixme = {
-						pattern = "%f[%w]()FIXME()%f[%W]",
-						group = "MiniHipatternsFixme",
-					},
-					hack = {
-						pattern = "%f[%w]()HACK()%f[%W]",
-						group = "MiniHipatternsHack",
-					},
-					todo = {
-						pattern = "%f[%w]()TODO()%f[%W]",
-						group = "MiniHipatternsTodo",
-					},
-					note = {
-						pattern = "%f[%w]()NOTE()%f[%W]",
-						group = "MiniHipatternsNote",
-					},
-					hex_color = hipatterns.gen_highlighter.hex_color(),
-				},
-			})
-		end,
-	},
+	-- Statusline
 	{
 		"echasnovski/mini.statusline",
-		main = "mini.statusline",
-		lazy = false,
+		version = false,
+		event = "VeryLazy",
 		opts = {
 			use_icons = false,
 			set_vim_settings = false,
-
 			content = {
 				active = function()
-					local MiniStatusline = require("mini.statusline")
-
 					local mode, mode_hl = MiniStatusline.section_mode({
 						trunc_width = 120,
 					})
@@ -122,40 +123,22 @@ return {
 					local location = MiniStatusline.section_location({
 						trunc_width = 75,
 					})
-
 					return MiniStatusline.combine_groups({
 						{ hl = mode_hl, strings = { mode } },
-						{
-							hl = "MiniStatuslineDevinfo",
-							strings = { "┃" },
-						},
-						{
-							hl = "MiniStatuslineFilename",
-							strings = { filename },
-						},
+						{ hl = "MiniStatuslineDevinfo", strings = { "┃" } },
+						{ hl = "MiniStatuslineFilename", strings = { filename } },
 						"%=",
-						{
-							hl = "MiniStatuslineDevinfo",
-							strings = { git },
-						},
-						{
-							hl = "MiniStatuslineDevinfo",
-							strings = { diagnostics },
-						},
-						{
-							hl = "MiniStatuslineFileinfo",
-							strings = { fileinfo },
-						},
-						{
-							hl = "MiniStatuslineFilename",
-							strings = { location },
-						},
+						{ hl = "MiniStatuslineDevinfo", strings = { git } },
+						{ hl = "MiniStatuslineDevinfo", strings = { diagnostics } },
+						{ hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
+						{ hl = "MiniStatuslineFilename", strings = { location } },
 					})
 				end,
 			},
 		},
 	},
 
+	-- Indent scope
 	{
 		"echasnovski/mini.indentscope",
 		version = false,
@@ -175,18 +158,15 @@ return {
 		},
 	},
 
+	-- Mini Pick
 	{
 		"echasnovski/mini.pick",
-		main = "mini.pick",
+		version = false,
 		cmd = "Pick",
 		keys = {
-			{ ";f", "<cmd>Pick files<cr>", desc = "files" },
-			{ ";r", "<cmd>Pick grep_live<cr>", desc = "grep" },
-			{
-				"\\\\",
-				"<cmd>Pick buffers<cr>",
-				desc = "search buffers",
-			},
+			{ ";f", "<cmd>Pick files<cr>", desc = "Files" },
+			{ ";r", "<cmd>Pick grep_live<cr>", desc = "Grep" },
+			{ "\\\\", "<cmd>Pick buffers<cr>", desc = "Search buffers" },
 		},
 		opts = {
 			delay = {
@@ -210,5 +190,12 @@ return {
 				use_cache = true,
 			},
 		},
+	},
+
+	-- Mini Extra
+	{
+		"echasnovski/mini.extra",
+		lazy = false,
+		version = false,
 	},
 }

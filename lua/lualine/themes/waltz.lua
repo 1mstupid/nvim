@@ -1,5 +1,5 @@
-local config = require("waltz.config")
-local colorscheme = require("waltz.colorscheme").pick()
+local config = require("config")
+local colorscheme = require("colorscheme").pick()
 
 local bg = (config.transparent and colorscheme.background_high) or colorscheme.background_low
 
