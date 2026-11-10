@@ -26,7 +26,6 @@
           lua-language-server
           vscode-langservers-extracted
           emmet-language-server
-          svelte-language-server
           rust-analyzer
           ast-grep
           prettier
@@ -34,8 +33,6 @@
           alejandra
           rustfmt
           python313Packages.python-lsp-server
-          typescript-language-server
-          tailwindcss-language-server
           stylua
           nixd
 
