@@ -81,6 +81,7 @@ return {
 		event = "BufWritePre",
 		opts = {
 			formatters_by_ft = {
+				nix = { "nixfmt" },
 				lua = { "stylua" },
 			},
 			format_on_save = {
