@@ -111,7 +111,7 @@ return {
 		opts = {
 			ensure_installed = {
 				"bash",
-        "nix"
+				"nix",
 				"html",
 				"svelte",
 				"latex",
