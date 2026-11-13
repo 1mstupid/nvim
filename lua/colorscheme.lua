@@ -1,76 +1,61 @@
 local p = {
-	background_low = "#111010",
-	background = "#212020",
-	background_high = "#252525",
-	background_higher = "#333131",
-	foreground = "#f2f2f2",
+    background_low = "#1a1b26",
+    background = "#24283b",
+    background_high = "#3b4261",
+    background_higher = "#414868",
+    foreground = "#c0caf5",
 
-	grey = "#737373",
-	dark_grey = "#636366",
-    red = "#f2cbbd",
-	red_dark = "#f2a5b5",
-	lavender = "#e6daf2",
-	lavender_dark = "#a796b3",
-    moss = "#96ab97",
-    moss_dark = "#7e8f7e",
-	green = "#c3d9ac",
-	green_dark = "#95a683",
-	yellow = "#e8f2c4",
-	yellow_dark = "#c1d184",
-	lime = "#ccff99",
-    lime_dark = "#89ab67",
+    grey = "#565f89",
+    dark_grey = "#3b4261",
+
+    red = "#f7768e",
+    red_dark = "${10}",
+
+    lavender = "#7dcfff",
+    lavender_dark = "${14}",
+
+    moss = "#9ece6a",
+    moss_dark = "${11}",
+
+    green = "#7aa2f7",
+    green_dark = "#9ece6a",
+
+    yellow = "#e0af68",
+    yellow_dark = "${12}",
+
+    lime = "#7aa2f7",
+    lime_dark = "${11}",
 }
 
 local M = {}
 
 function M.pick()
-	local colorscheme = {}
+    local colorscheme = vim.deepcopy(p)
 
-	colorscheme.background_low = p.background_low
-	colorscheme.background = p.background
-	colorscheme.background_high = p.background_high
-	colorscheme.background_higher = p.background_higher
-	colorscheme.foreground = p.foreground
+    colorscheme.terminal = {
+        black = "#15161e",
+        red = "#f7768e",
+        green = "#9ece6a",
+        yellow = "#e0af68",
+        blue = "#7aa2f7",
+        magenta = "#bb9af7",
+        cyan = "#7dcfff",
+        white = "#a9b1d6",
 
-	colorscheme.grey = p.grey
-	colorscheme.dark_grey = p.dark_grey
-	colorscheme.red = p.red
-	colorscheme.red_dark = p.red_dark
-	colorscheme.green = p.green
-	colorscheme.green_dark = p.green_dark
-	colorscheme.yellow = p.yellow
-	colorscheme.yellow_dark = p.yellow_dark
-	colorscheme.lavender = p.lavender
-	colorscheme.lavender_dark = p.lavender_dark
-	colorscheme.moss = p.moss
-	colorscheme.moss_dark = p.moss_dark
-	colorscheme.lime = p.lime
-	colorscheme.lime_dark = p.lime_dark
+        bright_black = "#414868",
+        bright_red = "${10}",
+        bright_green = "${11}",
+        bright_yellow = "${12}",
+        bright_blue = "${13}",
+        bright_magenta = "${14}",
+        bright_cyan = "${15}",
+        bright_white = "${16}",
 
-	colorscheme.terminal = {
-		black = p.grey,
-		red = p.red,
-		green = p.lime,
-		yellow = p.yellow,
-		lavender = p.lavender,
-		moss = p.moss,
-		cyan = p.lime,
-		white = p.foreground,
+        background = "#1a1b26",
+        foreground = "#c0caf5",
+    }
 
-		bright_black = p.grey,
-		bright_red = p.red_dark,
-		bright_green = p.green,
-		bright_yellow = p.yellow_dark,
-		bright_lavender = p.lavender_dark,
-		bright_moss = p.green_dark,
-		bright_cyan = p.lime_dark,
-		bright_white = p.foreground,
-
-		background = p.background_low,
-		foreground = p.foreground,
-	}
-
-	return colorscheme
+    return colorscheme
 end
 
 return M

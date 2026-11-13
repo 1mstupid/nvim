@@ -1,28 +1,29 @@
 local theme_file = "/home/waltz/Projects/nvim/lua/colorscheme.lua"
 
 local function reload_theme()
-	-- Clear Lua module cache
 	package.loaded["colorscheme"] = nil
 
-	-- Reload the module
-	local ok, theme = pcall(require, "colorscheme")
+	local ok, err = pcall(function()
+		require("waltz").colorscheme()
+	end)
 
 	if not ok then
-		vim.notify("Theme reload failed:\n" .. theme, vim.log.levels.ERROR)
+		vim.notify("Theme reload failed:\n" .. err, vim.log.levels.ERROR)
 		return
 	end
-
-	-- Reapply your colorscheme
-	-- Replace this with your actual colorscheme application function
-	require("colors.waltz").setup(theme.pick())
 
 	vim.notify("Theme reloaded!", vim.log.levels.INFO)
 end
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = theme_file,
-	callback = reload_theme,
-})
+local watcher = vim.uv.new_fs_event()
+
+watcher:start(theme_file, {}, function(err)
+	if err then
+		return
+	end
+
+	vim.schedule(reload_theme)
+end)
 
 _G.reload_theme = reload_theme
 -- Highlight the current line on only the active buffer
