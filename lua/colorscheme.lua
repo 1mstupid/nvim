@@ -1,61 +1,61 @@
 local p = {
-	background_low = "#191724",
-	background = "#1f1d2e",
-	background_high = "#26233a",
-	background_higher = "#6e6a86",
-	foreground = "#e0def4",
+    background_low = "#2d353b",
+    background = "#343f44",
+    background_high = "#475258",
+    background_higher = "#859289",
+    foreground = "#d3c6aa",
 
-	grey = "#6e6a86",
-	dark_grey = "#26233a",
+    grey = "#859289",
+    dark_grey = "#475258",
 
-	red = "#eb6f92",
-	red_dark = "#eb6f92",
+    red = "#e67e80",
+    red_dark = "#e67e80",
 
-	lavender = "#f6c177",
-	lavender_dark = "#c4a7e7",
+    lavender = "#83c092",
+    lavender_dark = "#d699b6",
 
-	moss = "#31748f",
-	moss_dark = "#31748f",
+    moss = "#a7c080",
+    moss_dark = "#a7c080",
 
-	green = "#9ccfd8",
-	green_dark = "#31748f",
+    green = "#a7c080",
+    green_dark = "#a7c080",
 
-	yellow = "#f6c177",
-	yellow_dark = "#f6c177",
+    yellow = "#dbbc7f",
+    yellow_dark = "#dbbc7f",
 
-	lime = "#9ccfd8",
-	lime_dark = "#31748f",
+    lime = "#a7c080",
+    lime_dark = "#a7c080",
 }
 
 local M = {}
 
 function M.pick()
-	local colorscheme = vim.deepcopy(p)
+    local colorscheme = vim.deepcopy(p)
 
-	colorscheme.terminal = {
-		black = "#26233a",
-		red = "#eb6f92",
-		green = "#31748f",
-		yellow = "#f6c177",
-		blue = "#9ccfd8",
-		magenta = "#c4a7e7",
-		cyan = "#ebbcba",
-		white = "#e0def4",
+    colorscheme.terminal = {
+        black = "#475258",
+        red = "#e67e80",
+        green = "#a7c080",
+        yellow = "#dbbc7f",
+        blue = "#7fbbb3",
+        magenta = "#d699b6",
+        cyan = "#83c092",
+        white = "#d3c6aa",
 
-		bright_black = "#6e6a86",
-		bright_red = "#eb6f92",
-		bright_green = "#31748f",
-		bright_yellow = "#f6c177",
-		bright_blue = "#9ccfd8",
-		bright_magenta = "#c4a7e7",
-		bright_cyan = "#ebbcba",
-		bright_white = "#908caa",
+        bright_black = "#859289",
+        bright_red = "#e67e80",
+        bright_green = "#a7c080",
+        bright_yellow = "#dbbc7f",
+        bright_blue = "#7fbbb3",
+        bright_magenta = "#d699b6",
+        bright_cyan = "#83c092",
+        bright_white = "#d3c6aa",
 
-		background = "#191724",
-		foreground = "#e0def4",
-	}
+        background = "#2d353b",
+        foreground = "#d3c6aa",
+    }
 
-	return colorscheme
+    return colorscheme
 end
 
 return M

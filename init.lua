@@ -1,12 +1,9 @@
-local config_root = "/home/waltz/Projects/nvim"
+local dev_config = "/home/waltz/Projects/nvim"
 
-vim.env.CONFIG_ROOT = config_root
+vim.opt.runtimepath:prepend(dev_config)
+vim.opt.packpath:prepend(dev_config)
 
-vim.opt.runtimepath:prepend(config_root)
-vim.opt.packpath:prepend(config_root)
-
-package.path = config_root .. "/lua/?.lua;" .. config_root .. "/lua/?/init.lua;" .. package.path
-
+package.path = dev_config .. "/lua/?.lua;" .. dev_config .. "/lua/?/init.lua;" .. package.path
 -- Core configuration
 require("autocmds")
 require("options")

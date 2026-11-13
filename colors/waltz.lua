@@ -1,1 +1,1 @@
-require("waltz").colorscheme()
+vim.cmd.colorscheme("waltz")

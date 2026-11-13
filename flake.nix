@@ -52,11 +52,11 @@
         default = inputs.wrappers.wrappers.neovim.wrap {
           inherit pkgs;
           env = {
-            "CONFIG_ROOT" = ./.;
+            "CONFIG_ROOT" = "/home/waltz/Projects/nvim";
             "NVIM_APPNAME" = "nvim-waltz-remote";
           };
           runtimePkgs = pkgList;
-          settings.config_directory = "${./.}";
+          settings.config_directory = "/home/waltz/Projects/nvim";
         };
         minimal = inputs.wrappers.wrappers.neovim.wrap {
           inherit pkgs;

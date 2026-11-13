@@ -1,10 +1,16 @@
-local theme_file = "/home/waltz/Projects/nvim/lua/colorscheme.lua"
+local config_root = "/home/waltz/Projects/nvim"
+local theme_file = config_root .. "/lua/colorscheme.lua"
 
 local function reload_theme()
+	-- Ensure the development config is in runtimepath
+	vim.opt.runtimepath:prepend(config_root)
+
+	-- Invalidate the palette cache
 	package.loaded["colorscheme"] = nil
 
+	-- Reload the colorscheme directly
 	local ok, err = pcall(function()
-		require("waltz").colorscheme()
+		dofile(config_root .. "/colors/waltz.lua")
 	end)
 
 	if not ok then
@@ -17,8 +23,8 @@ end
 
 local watcher = vim.uv.new_fs_event()
 
-watcher:start(theme_file, {}, function(err)
-	if err then
+watcher:start(config_root .. "/lua", {}, function(err, filename)
+	if err or filename ~= "colorscheme.lua" then
 		return
 	end
 
