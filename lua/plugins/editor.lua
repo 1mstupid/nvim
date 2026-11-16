@@ -5,6 +5,12 @@ return {
 		event = "VeryLazy",
 	},
 	{
+		"numToStr/Comment.nvim",
+		opts = {
+			-- add any options here
+		},
+	},
+	{
 		"stevearc/oil.nvim",
 		lazy = false,
 		keys = {
