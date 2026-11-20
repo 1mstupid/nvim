@@ -49,38 +49,45 @@
         ];
       in {
         # Define the default package for this system
-        default = inputs.wrappers.wrappers.neovim.wrap {
-          inherit pkgs;
-          env = {
-            "CONFIG_ROOT" = "/home/waltz/Projects/nvim";
-            "NVIM_APPNAME" = "nvim-waltz-remote";
-          };
-          runtimePkgs = pkgList;
-          settings.config_directory = "/home/waltz/Projects/nvim";
-          postInstall = ''
-            rm -f $out/share/applications/*.desktop
-          '';
-        };
-        minimal = inputs.wrappers.wrappers.neovim.wrap {
-          inherit pkgs;
-          env = {
-            "CONFIG_ROOT" = ./.;
-            "NVIM_APPNAME" = "nvim-waltz-remote";
-          };
-          runtimePkgs = with pkgs; [
-            lua5_1
-            tree-sitter
-            ripgrep
-            gcc
-            fzf
-            luarocks
-          ];
-          settings.config_directory = ./.;
-
-          postInstall = ''
-            rm -f $out/share/applications/*.desktop
-          '';
-        };
+        default =
+          (inputs.wrappers.wrappers.neovim.wrap {
+            inherit pkgs;
+            env = {
+              "CONFIG_ROOT" = "/home/waltz/Projects/nvim";
+              "NVIM_APPNAME" = "nvim-waltz-remote";
+            };
+            runtimePkgs = pkgList;
+            settings.config_directory = "/home/waltz/Projects/nvim";
+          }).overrideAttrs (old: {
+            postInstall =
+              (old.postInstall or "")
+              + ''
+                rm -f "$out"/share/applications/*.desktop
+              '';
+          });
+        minimal =
+          (inputs.wrappers.wrappers.neovim.wrap {
+            inherit pkgs;
+            env = {
+              "CONFIG_ROOT" = ./.;
+              "NVIM_APPNAME" = "nvim-waltz-remote";
+            };
+            runtimePkgs = with pkgs; [
+              lua5_1
+              tree-sitter
+              ripgrep
+              gcc
+              fzf
+              luarocks
+            ];
+            settings.config_directory = ./.;
+          }).overrideAttrs (old: {
+            postInstall =
+              (old.postInstall or "")
+              + ''
+                rm -f "$out"/share/applications/*.desktop
+              '';
+          });
       }
     );
   };
