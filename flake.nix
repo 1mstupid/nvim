@@ -57,9 +57,9 @@
           };
           runtimePkgs = pkgList;
           settings.config_directory = "/home/waltz/Projects/nvim";
-          filesToExclude = [
-            "share/applications/*.desktop"
-          ];
+          postInstall = ''
+            rm -f $out/share/applications/*.desktop
+          '';
         };
         minimal = inputs.wrappers.wrappers.neovim.wrap {
           inherit pkgs;
@@ -77,9 +77,9 @@
           ];
           settings.config_directory = ./.;
 
-          filesToExclude = [
-            "share/applications/*.desktop"
-          ];
+          postInstall = ''
+            rm -f $out/share/applications/*.desktop
+          '';
         };
       }
     );
