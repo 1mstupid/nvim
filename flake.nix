@@ -68,32 +68,6 @@
                 fi
               '';
           });
-        minimal =
-          (inputs.wrappers.wrappers.neovim.wrap {
-            inherit pkgs;
-            env = {
-              "CONFIG_ROOT" = ./.;
-              "NVIM_APPNAME" = "nvim-waltz-remote";
-            };
-            runtimePkgs = with pkgs; [
-              lua5_1
-              tree-sitter
-              ripgrep
-              gcc
-              fzf
-              luarocks
-            ];
-            settings.config_directory = ./.;
-          }).overrideAttrs (old: {
-            postFixup =
-              (old.postFixup or "")
-              + ''
-                if [ -e "$out/share/applications/nvim.desktop" ]; then
-                  rm -f "$out/share/applications/nvim.desktop"
-                  rmdir --ignore-fail-on-non-empty "$out/share/applications" "$out/share" 2>/dev/null || true
-                fi
-              '';
-          });
       }
     );
   };
