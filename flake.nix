@@ -62,8 +62,10 @@
             postFixup =
               (old.postFixup or "")
               + ''
-                rm -f "$out/share/applications/nvim.desktop"
-                rmdir --ignore-fail-on-non-empty "$out/share/applications" "$out/share" 2>/dev/null || true
+                if [ -e "$out/share/applications/nvim.desktop" ]; then
+                  rm -f "$out/share/applications/nvim.desktop"
+                  rmdir --ignore-fail-on-non-empty "$out/share/applications" "$out/share" 2>/dev/null || true
+                fi
               '';
           });
         minimal =
@@ -86,8 +88,10 @@
             postFixup =
               (old.postFixup or "")
               + ''
-                rm -f "$out/share/applications/nvim.desktop"
-                rmdir --ignore-fail-on-non-empty "$out/share/applications" "$out/share" 2>/dev/null || true
+                if [ -e "$out/share/applications/nvim.desktop" ]; then
+                  rm -f "$out/share/applications/nvim.desktop"
+                  rmdir --ignore-fail-on-non-empty "$out/share/applications" "$out/share" 2>/dev/null || true
+                fi
               '';
           });
       }
