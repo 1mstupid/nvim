@@ -49,32 +49,15 @@
         ];
       in {
         # Define the default package for this system
-        default =
-          (inputs.wrappers.wrappers.neovim.wrap {
-            inherit pkgs;
-            env = {
-              "CONFIG_ROOT" = "/home/waltz/Projects/nvim";
-              "NVIM_APPNAME" = "nvim-waltz-remote";
-            };
-            runtimePkgs = pkgList;
-            settings.config_directory = "/home/waltz/Projects/nvim";
-          }).overrideAttrs (old: {
-            preBuild =
-              (old.preBuild or "")
-              + ''
-                mkdir -p "$out/share/applications"
-                touch "$out/share/applications/nvim.desktop"
-              '';
-
-            postFixup =
-              (old.postFixup or "")
-              + ''
-                if [ -e "$out/share/applications/nvim.desktop" ]; then
-                  rm -f "$out/share/applications/nvim.desktop"
-                  rmdir --ignore-fail-on-non-empty "$out/share/applications" "$out/share" 2>/dev/null || true
-                fi
-              '';
-          });
+        default = inputs.wrappers.wrappers.neovim.wrap {
+          inherit pkgs;
+          env = {
+            "CONFIG_ROOT" = "/home/waltz/Projects/nvim";
+            "NVIM_APPNAME" = "nvim-waltz-remote";
+          };
+          runtimePkgs = pkgList;
+          settings.config_directory = "/home/waltz/Projects/nvim";
+        };
       }
     );
   };
