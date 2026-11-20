@@ -59,10 +59,11 @@
             runtimePkgs = pkgList;
             settings.config_directory = "/home/waltz/Projects/nvim";
           }).overrideAttrs (old: {
-            postInstall =
-              (old.postInstall or "")
+            postFixup =
+              (old.postFixup or "")
               + ''
-                rm -f "$out"/share/applications/*.desktop
+                rm -f "$out/share/applications/nvim.desktop"
+                rmdir --ignore-fail-on-non-empty "$out/share/applications" "$out/share" 2>/dev/null || true
               '';
           });
         minimal =
@@ -82,10 +83,11 @@
             ];
             settings.config_directory = ./.;
           }).overrideAttrs (old: {
-            postInstall =
-              (old.postInstall or "")
+            postFixup =
+              (old.postFixup or "")
               + ''
-                rm -f "$out"/share/applications/*.desktop
+                rm -f "$out/share/applications/nvim.desktop"
+                rmdir --ignore-fail-on-non-empty "$out/share/applications" "$out/share" 2>/dev/null || true
               '';
           });
       }
