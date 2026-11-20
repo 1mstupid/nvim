@@ -59,6 +59,13 @@
             runtimePkgs = pkgList;
             settings.config_directory = "/home/waltz/Projects/nvim";
           }).overrideAttrs (old: {
+            preBuild =
+              (old.preBuild or "")
+              + ''
+                mkdir -p "$out/share/applications"
+                touch "$out/share/applications/nvim.desktop"
+              '';
+
             postFixup =
               (old.postFixup or "")
               + ''
