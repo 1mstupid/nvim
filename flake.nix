@@ -11,14 +11,18 @@
     nixpkgs,
     ...
   } @ inputs: let
-    # Define the systems you want to support
-    supportedSystems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+    supportedSystems = [
+      "x86_64-linux"
+      "aarch64-linux"
+      "x86_64-darwin"
+      "aarch64-darwin"
+    ];
 
-    # A helper function to generate outputs for each system
-    # It imports nixpkgs for the system and passes the resulting 'pkgs' to the function 'f'
-    forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f (import nixpkgs {inherit system;}));
+    forAllSystems = f:
+      nixpkgs.lib.genAttrs supportedSystems (
+        system: f (import nixpkgs {inherit system;})
+      );
   in {
-    # Use the helper to generate the packages attribute for every system
     packages = forAllSystems (
       pkgs: let
         pkgList = with pkgs; [
@@ -36,7 +40,7 @@
           stylua
           nixd
 
-          # other tools
+          # Other tools
           lua5_1
           tree-sitter
           ripgrep
@@ -47,16 +51,43 @@
           imagemagick
           luarocks
         ];
-      in {
-        # Define the default package for this system
-        default = inputs.wrappers.wrappers.neovim.wrap {
+
+        neovim = inputs.wrappers.wrappers.neovim.wrap {
           inherit pkgs;
+
           env = {
-            "CONFIG_ROOT" = "/home/waltz/Projects/nvim";
-            "NVIM_APPNAME" = "nvim-waltz-remote";
+            CONFIG_ROOT = "/home/waltz/Projects/nvim";
+            NVIM_APPNAME = "nvim-waltz-remote";
           };
+
           runtimePkgs = pkgList;
           settings.config_directory = "/home/waltz/Projects/nvim";
+        };
+
+        desktopItem = pkgs.makeDesktopItem {
+          name = "nvim-waltz-remote";
+          desktopName = "Neovim";
+          genericName = "Text Editor";
+          comment = "Edit text files";
+          exec = "${neovim}/bin/nvim %F";
+          terminal = true;
+          categories = [
+            "Utility"
+            "TextEditor"
+            "Development"
+          ];
+          icon = "nvim";
+        };
+      in {
+        default = neovim;
+        neovim = neovim;
+
+        nvim-desktop = pkgs.symlinkJoin {
+          name = "nvim-desktop";
+          paths = [
+            neovim
+            desktopItem
+          ];
         };
       }
     );

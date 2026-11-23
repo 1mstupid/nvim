@@ -45,6 +45,12 @@ return {
 	-- Highlight TODO, FIXME, HACK, NOTE and hex colors
 
 	{
+		"m4xshen/hardtime.nvim",
+		lazy = false,
+		dependencies = { "MunifTanjim/nui.nvim" },
+		opts = {},
+	},
+	{
 		"echasnovski/mini.hipatterns",
 		version = false,
 		event = "BufReadPost",
@@ -89,6 +95,13 @@ return {
 				lsp_format = "fallback",
 			},
 		},
+	},
+	{
+		"OXY2DEV/markview.nvim",
+		lazy = false,
+
+		-- Completion for `blink.cmp`
+		-- dependencies = { "saghen/blink.cmp" },
 	},
 
 	-- Statusline

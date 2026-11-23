@@ -1,30 +1,30 @@
 local p = {
-	background_low = "#2d353b",
-	background = "#343f44",
-	background_high = "#475258",
-	background_higher = "#859289",
-	foreground = "#d3c6aa",
+	background_low = "#1a1b26",
+	background = "#24283b",
+	background_high = "#3b4261",
+	background_higher = "#414868",
+	foreground = "#c0caf5",
 
-	grey = "#859289",
-	dark_grey = "#475258",
+	grey = "#565f89",
+	dark_grey = "#3b4261",
 
-	red = "#e67e80",
-	red_dark = "#e67e80",
+	red = "#f7768e",
+	red_dark = "#f7768e",
 
-	lavender = "#83c092",
-	lavender_dark = "#d699b6",
+	lavender = "#7dcfff",
+	lavender_dark = "#bb9af7",
 
-	moss = "#a7c080",
-	moss_dark = "#a7c080",
+	moss = "#9ece6a",
+	moss_dark = "#9ece6a",
 
-	green = "#a7c080",
-	green_dark = "#a7c080",
+	green = "#7aa2f7",
+	green_dark = "#9ece6a",
 
-	yellow = "#dbbc7f",
-	yellow_dark = "#dbbc7f",
+	yellow = "#e0af68",
+	yellow_dark = "#e0af68",
 
-	lime = "#a7c080",
-	lime_dark = "#a7c080",
+	lime = "#7aa2f7",
+	lime_dark = "#9ece6a",
 }
 
 local M = {}
@@ -33,26 +33,26 @@ function M.pick()
 	local colorscheme = vim.deepcopy(p)
 
 	colorscheme.terminal = {
-		black = "#475258",
-		red = "#e67e80",
-		green = "#a7c080",
-		yellow = "#dbbc7f",
-		blue = "#7fbbb3",
-		magenta = "#d699b6",
-		cyan = "#83c092",
-		white = "#d3c6aa",
+		black = "#15161e",
+		red = "#f7768e",
+		green = "#9ece6a",
+		yellow = "#e0af68",
+		blue = "#7aa2f7",
+		magenta = "#bb9af7",
+		cyan = "#7dcfff",
+		white = "#a9b1d6",
 
-		bright_black = "#859289",
-		bright_red = "#e67e80",
-		bright_green = "#a7c080",
-		bright_yellow = "#dbbc7f",
-		bright_blue = "#7fbbb3",
-		bright_magenta = "#d699b6",
-		bright_cyan = "#83c092",
-		bright_white = "#d3c6aa",
+		bright_black = "#414868",
+		bright_red = "#f7768e",
+		bright_green = "#9ece6a",
+		bright_yellow = "#e0af68",
+		bright_blue = "#7aa2f7",
+		bright_magenta = "#bb9af7",
+		bright_cyan = "#7dcfff",
+		bright_white = "#c0caf5",
 
-		background = "#2d353b",
-		foreground = "#d3c6aa",
+		background = "#1a1b26",
+		foreground = "#c0caf5",
 	}
 
 	return colorscheme
