@@ -69,14 +69,19 @@
           desktopName = "Neovim";
           genericName = "Text Editor";
           comment = "Edit text files";
-          exec = "${neovim}/bin/nvim %F";
-          terminal = true;
+
+          exec = "${pkgs.alacritty}/bin/alacritty -e ${neovim}/bin/nvim %F";
+
+          terminal = false;
+
           categories = [
             "Utility"
             "TextEditor"
             "Development"
           ];
+
           icon = "nvim";
+          startupNotify = false;
         };
       in {
         default = neovim;
@@ -84,6 +89,7 @@
 
         nvim-desktop = pkgs.symlinkJoin {
           name = "nvim-desktop";
+
           paths = [
             neovim
             desktopItem
